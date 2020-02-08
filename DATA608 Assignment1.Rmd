@@ -34,13 +34,12 @@ head(inc)
 ```
 
 ```{r}
-
 summary(inc)
-
 ```
 
 Think a bit on what these summaries mean. Use the space below to add some more relevant non-visual exploratory information you think helps you understand this data:
 
+Further Stats on the Data
 ```{r}
 
 # Insert your code here, create more chunks as necessary
@@ -49,7 +48,7 @@ kable(describe(inc)) %>% kable_styling() %>% scroll_box(width = "600px", height 
 ```
 
 
-
+Popularity of the industries
 ```{r}
 companies <- data.frame(table(inc$Industry))
 colnames(companies)<- c("Industry", "Count")
@@ -57,11 +56,18 @@ kable(companies) %>% kable_styling() %>% scroll_box(width = "600px", height = "3
 
 ```
 
+Correlation among the variables (numeric)
+```{r}
+inc %>% select(Rank, Growth_Rate, Revenue, Employees) %>% cor(use = "complete.obs")
+```
+
+Rank has a strong positive correlation with Revenue while Employees have a negative relationship with Growth Rate.
+
 ## Question 1
 
 Create a graph that shows the distribution of companies in the dataset by State (ie how many are in each state). There are a lot of States, so consider which axis you should use. This visualization is ultimately going to be consumed on a 'portrait' oriented screen (ie taller than wide), which should further guide your layout choices.
 
-```{r}
+```{r, fig.width=9, fig.height=6}
 
 # Answer Question 1 here
 
@@ -70,10 +76,11 @@ data <- inc %>%
   tally()
 
 ggplot(data= data, aes(x= reorder(State, n), y=n)) +
-  geom_bar(stat="identity", fill='darkgreen')+ 
-  ggtitle("Companies per State")+ xlab("State")
-  ylab('Count(Companies)')+
-  theme_minimal() + theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+  geom_bar(stat="identity", fill='darkgreen') + 
+  ggtitle("Companies per State")+ xlab("State") +
+  ylab('Count(Companies)') +
+  theme_minimal() + 
+  theme(text = element_text(size=8), axis.text.x = element_text(angle = 90, hjust = 1)) 
 
 ```
 
@@ -102,7 +109,7 @@ gridExtra::grid.arrange(outliers, means,nrow = 1 )
 
 Now imagine you work for an investor and want to see which industries generate the most revenue per employee. Create a chart that makes this information clear. Once again, the distribution per industry should be shown.
 
-```{r}
+```{r, fig.width=9, fig.height=6}
 
 # Answer Question 3 here
 
