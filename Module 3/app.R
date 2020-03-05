@@ -58,7 +58,7 @@ average should be weighted by the national population."),
               br(),
               p("Source code for this app can be found on",
                 a(strong("Github."), 
-                  href = "")))
+                  href = "https://github.com/javernw/DATA608-Knowledge-and-Visual-Analytics/blob/master/Module%203/app.R")))
   )
 )
 
