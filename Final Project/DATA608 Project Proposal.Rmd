@@ -1,0 +1,129 @@
+---
+title: "DATA608 Project Proposal: Global Terrorism"
+author: "Javern Wilson"
+date: "3/12/2020"
+output: 
+  html_document:
+    theme: paper
+---
+
+## INTRODUCTION
+
+Around the world Terrorism tends to have significant impacts on human rights with devastating consequences. Terrorism can undermine or weaken Governments, jeopardize national security, peace and both social and economic development. [The Global Terrorism Database](www.start.umd.edu/gtd) (GTD) defines terrorism as "*The threatened or actual use of illegal force and violence by a non-state actor to attain a political, economic, religious, or social goal through fear, coercion, or intimidation.*". Terrorism can take many forms and have multiple reasons leading up to the attack(s) spurning from a political or ideological goal at the expense of the general population.
+
+In this project, we will rely on the Global Terrorism Database as a key source in order to create interative visualizations using R's Shiny or Shiny Dashboard on incidents and fatalities from terrorism across the world. As per the requirements in preparing this project, the data is of open source made available for researchers. The GTD is well-respected and highly-regarded as a comprehensive data source on global terrorism.
+
+
+### ABOUT THE DATASET 
+
+#### PREVIEW
+
+```{r include=FALSE}
+
+library(tidyverse)
+library(kableExtra)
+```
+
+
+```{r eval=FALSE, include=FALSE}
+
+gtd <- read.csv("gtd/globalterrorismdb_0718dist.csv")
+
+#File too big for github
+gtd1 <- gtd[1:20000,]
+gtd2 <- gtd[20001:40000,]
+gtd3 <- gtd[40001: 60000,]
+gtd4 <- gtd[60001: 80000,]
+gtd5 <- gtd[80001: 100000,]
+gtd5a <- gtd[80001: 90000,]
+gtd5b <- gtd[90001: 100000,]
+gtd6a <- gtd[100001: 110000,]
+gtd6b <- gtd[110001: 120000,]
+gtd7 <- gtd[120001: 140000,]
+gtd8 <- gtd[140001: 160000,]
+gtd9 <- gtd[160001: 180000,]
+gtd10 <- gtd[180001: 181961,]
+
+
+write.csv(gtd1, "gtd1.csv", row.names = F)
+write.csv(gtd2, "gtd2.csv", row.names = F)
+write.csv(gtd3, "gtd3.csv", row.names = F)
+write.csv(gtd4, "gtd4.csv", row.names = F)
+write.csv(gtd5, "gtd5.csv", row.names = F)
+write.csv(gtd5a, "gtd5a.csv", row.names = F)
+write.csv(gtd5b, "gtd5b.csv", row.names = F)
+write.csv(gtd6, "gtd6.csv", row.names = F)
+write.csv(gtd6a, "gtd6a.csv", row.names = F)
+write.csv(gtd6b, "gtd6b.csv", row.names = F)
+write.csv(gtd7, "gtd7.csv", row.names = F)
+write.csv(gtd8, "gtd8.csv", row.names = F)
+write.csv(gtd9, "gtd9.csv", row.names = F)
+write.csv(gtd10, "gtd10.csv", row.names = F)
+
+```
+
+
+```{r message=TRUE, include=FALSE}
+gtd1 <- read.csv("https://raw.githubusercontent.com/javernw/DATA608-Knowledge-and-Visual-Analytics/master/Final%20Project/gtd1.csv", stringsAsFactors = F)
+gtd2 <- read.csv("https://raw.githubusercontent.com/javernw/DATA608-Knowledge-and-Visual-Analytics/master/Final%20Project/gtd2.csv", stringsAsFactors = F)
+gtd3 <- read.csv("https://raw.githubusercontent.com/javernw/DATA608-Knowledge-and-Visual-Analytics/master/Final%20Project/gtd3.csv", stringsAsFactors = F)
+gtd4 <- read.csv("https://raw.githubusercontent.com/javernw/DATA608-Knowledge-and-Visual-Analytics/master/Final%20Project/gtd4.csv", stringsAsFactors = F)
+gtd5a <- read.csv("https://raw.githubusercontent.com/javernw/DATA608-Knowledge-and-Visual-Analytics/master/Final%20Project/gtd5a.csv", stringsAsFactors = F)
+gtd5b <- read.csv("https://raw.githubusercontent.com/javernw/DATA608-Knowledge-and-Visual-Analytics/master/Final%20Project/gtd5b.csv", stringsAsFactors = F)
+gtd6a <- read.csv("https://raw.githubusercontent.com/javernw/DATA608-Knowledge-and-Visual-Analytics/master/Final%20Project/gtd6a.csv", stringsAsFactors = F)
+gtd6b <- read.csv("https://raw.githubusercontent.com/javernw/DATA608-Knowledge-and-Visual-Analytics/master/Final%20Project/gtd6b.csv", stringsAsFactors = F)
+gtd7 <- read.csv("https://raw.githubusercontent.com/javernw/DATA608-Knowledge-and-Visual-Analytics/master/Final%20Project/gtd7.csv", stringsAsFactors = F)
+gtd8 <- read.csv("https://raw.githubusercontent.com/javernw/DATA608-Knowledge-and-Visual-Analytics/master/Final%20Project/gtd8.csv", stringsAsFactors = F)
+gtd9 <- read.csv("https://raw.githubusercontent.com/javernw/DATA608-Knowledge-and-Visual-Analytics/master/Final%20Project/gtd9.csv", stringsAsFactors = F)
+gtd10 <- read.csv("https://raw.githubusercontent.com/javernw/DATA608-Knowledge-and-Visual-Analytics/master/Final%20Project/gtd10.csv", stringsAsFactors = F)
+
+gtd <- rbind(gtd1, gtd2, gtd3, gtd4, gtd5a, gtd5b, gtd6a, gtd6a, gtd7, gtd8, gtd9, gtd10)
+```
+
+```{r echo=FALSE}
+kable(head(gtd, 30)) %>% kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% scroll_box(height = "600px", width = "700px")
+```
+
+#### NOTES
+
+1. GTD documents more than 190,000 international and domestic terrorist attacks that occurred worldwide since 1970. Specifically in this dataset there are `181961` observations with `135` variables concerning type of incident, target, reasons for the attack, weapons used and the like from `1970` to `2018` amoung `205` different countries.
+
+2. The attacks in the GTD are attributed to more than `2,000` named perpetrator organizations and more than `700` additional generic groupings.
+
+3. The authors of the GTD acknowledged that between 1970s and 1980s, events were under-accounted so caution would be noted when inferring results as there are a lot of data missing during those decades.
+
+
+## INTERACTIVE VISUALIZATIONS
+
+The aim of this project is to provide interative displays of the terrorist acts that occurred over time. Analysis will be done to get a better understanding of the data in order to bring these visualizations to life. With the use of these graphics, the user will be able to easier identify the patterns and trends of the data. Listed are some of the areas that may be covered:
+
++ Map displaying countries where incidents occurred using coordinates.
+
++ Incidents that happened by country and/or year
+
++ Types of attacks or type of victims targeted
+
++ Weapons used to carry out attacks
+
++ Casualties
+
+Possibly as the project progresses, more graphic representations of the data may develop.
+
+
+## RELEVANCE
+
+With respect to counter-terrorism:
+
+Individuals or groups may use terrorism because they do not like the current organisation of a society and believes that it needs to change with the use of violence as there is no other choice. Due to the significant resources available to counter terrorism, it is important to analyse and aggregate the data available to better understand the various attributes.
+
+
+
+## DATA SOURCES
+
+The database was derived from [Kaggle.com](https://www.kaggle.com/START-UMD/gtd).
+
+A *cookbook* or data dictionary is also available to provide further details on the variable names within the dataset. The *cookbook* can be accessed via: [https://start.umd.edu/gtd/downloads/Codebook.pdf](https://start.umd.edu/gtd/downloads/Codebook.pdf). 
+
+The [GTD](www.start.umd.edu/gtd) website will also help in obtaining additional information that may not be found directly in the dataset. 
+
+Other sources may include the [Global Terrorism Index (GTI)](http://visionofhumanity.org/app/uploads/2019/11/GTI-2019web.pdf) which is a comprehensive study analysing the impact of terrorism for `163` countries and which covers `99.7%` of the world’s population. The GTI is also based on the Global Terrorism Database.
