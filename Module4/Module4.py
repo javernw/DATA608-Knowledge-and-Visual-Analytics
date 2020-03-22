@@ -23,7 +23,7 @@ hs = tr2.groupby(['spc_common', 'health'])
 species = tr1['spc_common'].unique()
 borough = tr1['boroname'].unique()
 health = tr2['health'].unique()
-colors = ["#006D2C", "#31A354", "#74C476"]
+colors = ["#006D2C", "#31A354", "#74C476", "#90D691"]
 tg = tr1.groupby(['spc_common', 'boroname'])
 #my_graph = tg.get_group(('tulip-poplar', 'Brooklyn'))['health'].value_counts().plot.pie(x = 'health', colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
 
