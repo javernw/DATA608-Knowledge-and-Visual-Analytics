@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>TASK 1</h2>
+<h3>Let's reverse a word!</h3>
+
+<input type="text" id="mystring" value="Enter String">
+
+<p>Click the "Reverse" button to reverse the text.</p>
+
+<button onclick="reverse_my_string()">Reverse</button>
+
+<p id="reverse"></p>
+
+<script>
+function reverse_my_string() {
+    var mytext = document.getElementById("mystring").value;
+    var rev = mytext.split('').reverse().join('')
+    document.getElementById("reverse").innerHTML = rev;     
+} 
+</script>
+
+<br> <br>
+<h2>TASK 2</h2>
+<h3>Multiples!</h3>
+<p> Enter a number.</p>
+<input type="number" id="mynumber">
+<button onclick="printTable()">View Multiples</button>
+<p id="multiple"></p>
+
+<script>
+function create_table(){
+var num = document.getElementById("mynumber").value;
+var multiples_arr = []
+for(var i = 1; i < 20 + 1; i++){
+	multiples_arr.push(i*num);
+ }
+var res = "<table border=1>";
+res += "<tr>";
+for (var j = 0; j < multiples_arr.length; j++) {
+  res += "<td>" + multiples_arr[j] + "</td>";
+  if ((j + 1) % 4 == 0) {
+    res += "</tr><tr>";
+  }
+}
+res += "</tr>";
+res += "</table>";
+document.body.innerHTML = res;
+return res;
+}
+
+function printTable(){
+    var tbl = document.getElementById("multiple");
+    tbl.innerHTML = create_table();
+}
+</script>
+
+<h2>TASK 3</h2>
+<h3>.CSV</h3>
+<button onclick="importdata()">Import Data</button>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<script>
+function importdata(){	d3.csv("https://raw.githubusercontent.com/charleyferrari/CUNY_DATA_608/master/module5/data/presidents.csv", function(data) {
+    console.log(data[0]);
+});
+}
+</script>
+
+</body>
+</html>
