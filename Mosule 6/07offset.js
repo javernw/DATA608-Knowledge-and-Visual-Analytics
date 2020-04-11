@@ -39,7 +39,7 @@ d3.csv('https://raw.githubusercontent.com/javernw/DATA608-Knowledge-and-Visual-A
     d3.select('#part7')
         .append('svg')
             .attr("width", 1180)
-		    .attr("height", 980)
+	    .attr("height", 980)
         .append('g')
             .attr("transform", "translate(0, -280)")
         .selectAll('path')
