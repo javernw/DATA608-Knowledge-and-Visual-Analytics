@@ -563,7 +563,7 @@ server <- function(input, output, session) {
 
   output$static_map <-  renderPlot({
     ggmap_hide_api_key()
-    register_google("AIzaSyBWspUCr5mzazuurMMIeGf2z3WrouNhTfs")
+    register_google("your key")
    selected_country <- country_terror %>%  filter(country_terror$country_txt == input$select_country) 
     ggmap(get_map(location = selected_country$country_txt[1], zoom = 4)) + 
       geom_point(aes(x = longitude, y = latitude,  colour = country_txt), data = country_terror, size = 0.5) + 
