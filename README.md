@@ -26,5 +26,6 @@ With respect to counter-terrorism:
 Individuals or groups may use terrorism because they do not like the current organisation of a society and believes that it needs to change with the use of violence as there is no other choice. Due to the significant resources available to counter terrorism, it is important to analyse and aggregate the data available to better understand the various attributes.
 
 
-[See App Here!]( https://javern-wilson.shinyapps.io/jwGlobalTerrorismDatabase/)
+### [See App Here!]( https://javern-wilson.shinyapps.io/jwGlobalTerrorismDatabase/)
+
 ![](terror_anim.gif)
