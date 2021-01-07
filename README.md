@@ -1,7 +1,6 @@
-# DATA608-Knowledge-and-Visual-Analytics
-## Global Terrorism
+# Global Terrorism
 
-### GLOBAL TERRORISM DATABASE
+## GLOBAL TERRORISM DATABASE
 Around the world Terrorism tends to have significant impacts on human rights with devastating consequences.
 Terrorism can:
 Undermine or weaken Governments.
